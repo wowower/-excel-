@@ -1,0 +1,22 @@
+'use strict';
+(()=>{const {$,el,status}=App,defaults=['我想说话','请等一下','是的','不是','我需要帮助','我想喝水','我想休息','请慢一点','我不舒服','谢谢你','请再说一次','我还没说完'];let board=App.saved.board||defaults.slice(),parts=[],scanIndex=0,timer=null;const actions=[{text:'朗读句子',run:()=>speak()},{text:'撤回一个短语',run:()=>undo()},{text:'清空句子',run:()=>clear()},{text:'停止扫描',run:()=>stop(true)}];
+ function speak(){if(App.speak($('sentence').value,'board-voice',1,()=>status('board-status','朗读结束。'),m=>status('board-status',m,true)))status('board-status','正在用本地声音朗读。');}
+ function append(value){if($('sentence').value.length+value.length+1>1500){status('board-status','句子已接近 1,500 字上限，请先表达或清空。',true);return;}parts.push($('sentence').value);$('sentence').value=($('sentence').value+' '+value).trim();status('board-status','已加入：'+value);}
+ function undo(){if(parts.length)$('sentence').value=parts.pop();else $('sentence').value='';status('board-status','已撤回。');}
+ function clear(){if($('sentence').value)parts.push($('sentence').value);$('sentence').value='';status('board-status','句子已清空，可用撤回恢复。');}
+ function render(){const grid=$('phrase-grid');grid.replaceChildren();board.forEach((phrase,i)=>{const b=el('button',phrase);b.type='button';b.id='phrase-'+i;b.onclick=()=>append(phrase);b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const columns=getComputedStyle(grid).gridTemplateColumns.split(' ').length,delta=e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:e.key==='ArrowUp'?-columns:columns;grid.children[CA.scanNext(i,board.length,delta)].focus();};grid.append(b);});$('phrase-editor').value=board.join('\n');}
+ function updateScan(){document.querySelectorAll('.scan-active').forEach(e=>e.classList.remove('scan-active'));if(!timer)return;if(scanIndex<board.length)$('phrase-'+scanIndex).classList.add('scan-active');$('scan-current').textContent='当前扫描：'+(scanIndex<board.length?board[scanIndex]:actions[scanIndex-board.length].text);}
+ function stop(focus=false){if(timer){clearInterval(timer);timer=null;}document.querySelectorAll('.scan-active').forEach(e=>e.classList.remove('scan-active'));$('scan-stage').dataset.active='false';$('scan-current').textContent='扫描已停止';$('scan-start').textContent='开始自动扫描';if(focus)$('scan-start').focus();}
+ function advance(){scanIndex=CA.scanNext(scanIndex,board.length+actions.length);updateScan();}
+ function start(){stop();scanIndex=0;timer=setInterval(advance,Number($('scan-speed').value));$('scan-stage').dataset.active='true';$('scan-start').textContent='重新开始扫描';updateScan();$('scan-stage').focus();}
+ $('scan-start').onclick=start;$('scan-stop').onclick=()=>stop(true);$('scan-speed').onchange=()=>{if(timer)start();};
+ $('scan-stage').onkeydown=e=>{if(!timer)return;if(e.key==='Escape'){e.preventDefault();stop(true);return;}if(e.key==='Tab'){stop();return;}if(e.repeat){if([' ','Enter','ArrowRight'].includes(e.key))e.preventDefault();return;}if(e.key===' '||e.key==='Enter'){e.preventDefault();if(scanIndex<board.length)append(board[scanIndex]);else actions[scanIndex-board.length].run();}if(e.key==='ArrowRight'){e.preventDefault();advance();}};
+ $('scan-stage').addEventListener('blur',()=>stop());window.addEventListener('blur',()=>stop());document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});window.addEventListener('common-route',()=>stop());
+ $('board-speak').onclick=speak;$('board-undo').onclick=undo;$('board-clear').onclick=clear;$('sentence').oninput=()=>{parts=[];};
+ $('board-display').onclick=()=>{if(!$('sentence').value.trim()){status('board-status','请先输入或选择短语。',true);return;}$('display-text').textContent=$('sentence').value;stop();$('display-dialog').showModal();};
+ function readEditor(){return CA.lines($('phrase-editor').value,36,60);}
+ $('board-apply').onclick=()=>{try{board=readEditor();stop();render();status('board-status','已应用到本次页面；短语顺序保持不变。');}catch(e){status('board-status',e.message,true);}};
+ $('board-save').onclick=()=>{try{const next=readEditor();App.savePatch({board:next});board=next;stop();render();status('board-status','短语已记在本机，句子没有保存。');}catch(e){status('board-status',e.message,true);}};
+ $('board-defaults').onclick=()=>{if(!confirm('在本次页面恢复默认短语？已经保存的短语不会改变，除非再次保存。'))return;board=defaults.slice();stop();render();status('board-status','本次页面已恢复默认短语。');};
+ App.board={get:()=>board.slice(),restore:next=>{board=next.slice();stop();render();},stop};render();
+})();

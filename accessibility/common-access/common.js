@@ -1,0 +1,18 @@
+'use strict';
+window.App={};
+App.$=id=>document.getElementById(id);
+App.el=(tag,text,className)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;};
+App.status=(id,text,error=false)=>{const e=App.$(id);e.textContent=text;e.dataset.error=String(error);};
+App.download=(text,name,type='text/plain;charset=utf-8')=>{const url=URL.createObjectURL(new Blob([text],{type})),a=App.el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);};
+App.readFile=async(file,max)=>{if(!file)throw Error('请先选择文件');if(file.size>max)throw Error('文件超过允许大小');try{return new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer());}catch{throw Error('文件不是有效的 UTF-8 文本，请先另存为 UTF-8');}};
+App.testMode=new URLSearchParams(location.search).get('test')==='1';App.storageKey=App.testMode?'common-access-test-data-v1':'common-access-data-v1';App.preferencesKey=App.testMode?'common-access-test-preferences-v1':'common-access-preferences-v1';App.saved={};App.storageLocked=false;
+try{const raw=localStorage.getItem(App.storageKey);if(raw)App.saved=CA.parseBackup(raw);}catch{App.storageLocked=true;App.status('global-status','本机保存不可用或已有数据损坏，已暂停写入，避免覆盖。临时工具仍可使用；请先备份或到帮助页确认清理。',true);}
+App.persist=next=>{if(App.storageLocked)throw Error('本机保存目前被暂停，请先处理底部的数据提醒');const validated=CA.parseBackup(JSON.stringify({format:'common-access',version:1,...next}));try{localStorage.setItem(App.storageKey,JSON.stringify({format:'common-access',version:1,...validated}));}catch{throw Error('保存失败：浏览器存储可能被禁用或空间不足。修改仍在本次页面，请先导出备份。');}App.saved=validated;};
+App.savePatch=patch=>App.persist({...App.saved,...patch});
+App.removeSaved=key=>{const next={...App.saved};delete next[key];App.persist(next);};
+App.voices=[];let speechToken=0;
+App.stopSpeech=()=>{speechToken++;if('speechSynthesis'in window)speechSynthesis.cancel();};
+App.updateVoices=()=>{App.voices=('speechSynthesis'in window?speechSynthesis.getVoices():[]).filter(v=>v.localService===true);for(const select of document.querySelectorAll('.voice-picker')){const old=select.value;select.replaceChildren();App.voices.forEach((v,i)=>{const option=App.el('option',`${v.name} · ${v.lang}`);option.value=String(i);select.append(option);});if(!App.voices.length){const o=App.el('option','没有可用本地语音，可继续使用文字功能');o.value='';select.append(o);select.disabled=true;}else{select.disabled=false;const matching=App.voices.findIndex(v=>v.lang.toLowerCase().startsWith('zh'));select.value=old!==''&&App.voices[Number(old)]?old:String(Math.max(0,matching));}}for(const e of document.querySelectorAll('.voice-hint'))e.textContent=App.voices.length?`检测到 ${App.voices.length} 个本地声音；离线可用性仍需在本设备确认。`:'未检测到本地语音。不会改用云端声音；可用大字展示沟通。';};
+App.speak=(value,picker,rate=1,onEnd=()=>{},onError=()=>{})=>{App.stopSpeech();if(!value.trim()){onError('请先输入要朗读的文字');return false;}const voice=App.voices[Number(App.$(picker).value)];if(!voice||voice.localService!==true||!('speechSynthesis'in window)){onError('此设备没有可用的本地语音，请使用文字或大字展示。');return false;}const chunks=CA.speechChunks(value),token=speechToken;let i=0;const next=()=>{if(token!==speechToken)return;if(i>=chunks.length){onEnd();return;}const u=new SpeechSynthesisUtterance(chunks[i++]);u.voice=voice;u.lang=voice.lang;u.rate=rate;u.onend=next;u.onerror=e=>{if(token===speechToken){App.stopSpeech();onError('本地朗读失败：'+e.error+'。文字功能仍可使用。');}};speechSynthesis.speak(u);};next();return true;};
+if('speechSynthesis'in window)speechSynthesis.addEventListener('voiceschanged',App.updateVoices);App.updateVoices();
+document.querySelectorAll('.speech-stop').forEach(b=>b.onclick=()=>{App.stopSpeech();App.status('global-status','已停止朗读。');});

@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>共达离线无障碍工具箱项目申报书</title><style>
+*{box-sizing:border-box}body{margin:0;background:#e8ecee;color:#171717;font-family:"Microsoft YaHei","Noto Sans CJK SC","SimSun",sans-serif;font-size:11pt;line-height:1.7}
+.docbar{padding:16px 24px;background:white;position:sticky;top:0;z-index:2;font-size:14px}.docbar a{margin-right:20px;color:#194b59}.docbar button{padding:10px 18px;background:#194b59;color:white;border:0;border-radius:5px;cursor:pointer}
+.sheet{position:relative;background:white;width:210mm;height:297mm;padding:18mm 20mm 16mm;margin:22px auto;box-shadow:0 3px 18px #0002;overflow:visible}.running{font-size:8pt;line-height:1.5;color:#555;margin-bottom:7mm;min-height:5mm}.content{padding-bottom:7mm}h1,h2,h3{color:#000;line-height:1.5;break-after:avoid}h1{font-size:25pt;font-weight:700;margin:7mm 0 10mm}h2{font-size:15pt;margin:0 0 5mm}h3{font-size:11.5pt;margin:5mm 0 2mm}p{margin:0 0 4mm;text-align:left;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;table-layout:fixed;margin:5mm 0 6mm;font-size:9pt;line-height:1.6}th,td{border:1px solid #d9d9d9;padding:2.3mm 2.5mm;vertical-align:middle;overflow-wrap:anywhere}th{background:#36434c;color:#fff;font-weight:600}tbody tr:nth-child(even){background:#f3f5f6}tr{break-inside:avoid}thead{display:table-header-group}a{color:#173b45;text-decoration:underline;text-underline-offset:2px}ul,ol{padding-left:1.3em;margin:0 0 4mm}li{margin:2mm 0}code{font-family:Consolas,monospace;font-size:.9em;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt;background:#f5f5f5;padding:3mm}.page-footer{position:absolute;bottom:8mm;left:20mm;right:20mm;display:flex;justify-content:space-between;font-size:8pt;color:#555}.cover h1{margin-top:15mm;font-size:25pt}.cover .running{margin-bottom:13mm}.continuous{height:auto;min-height:297mm}.continuous .content{padding-bottom:14mm}
+@page{size:A4;margin:0}@media print{body{background:white}.docbar{display:none}.sheet{margin:0;box-shadow:none;break-after:page;page-break-after:always}.sheet:last-child{break-after:auto;page-break-after:auto}a{color:inherit}th{-webkit-print-color-adjust:exact;print-color-adjust:exact}tbody tr:nth-child(even){-webkit-print-color-adjust:exact;print-color-adjust:exact}.continuous{height:auto}.continuous .page-footer{display:none}}
+@media screen and (max-width:850px){.sheet{width:100%;height:auto;min-height:0;padding:25px;margin:15px 0}.page-footer{position:static;margin-top:30px}.docbar{position:static}table{font-size:10pt}h1{font-size:24pt}}
+</style></head><body><nav class="docbar" aria-label="文档操作"><a href="../index.html#help">返回工具箱</a><a href="application.md">查看可编辑原文</a><button onclick="window.print()">打印或另存为 PDF</button></nav><main><section class="sheet cover" aria-label="第 1 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h1>共达离线无障碍工具箱项目申报书</h1>
+<p>通用科技创新与公益服务项目</p>
+<p>编制日期 2026年11月11日</p>
+<p>本项目申请支持一套已有可运行原型的无障碍工具，重点开展当事人共同设计、辅助技术兼容验证和小范围场景试点。软件包含表达板、轻阅读、字幕工作台、一步任务卡及网页检查台，采用本机处理和可导出数据的方式，减少账号、联网与数据迁移负担。</p>
+<p>申请的核心是验证哪些人能从具体功能受益、哪些人应采用成熟替代品，并修复阻断性问题。项目不以临床疗效、算法识别准确率或已获无障碍认证为立项前提。</p>
+<table><colgroup><col style="width:28%"><col style="width:72%"></colgroup><thead><tr><th scope="col">申报字段</th><th scope="col">填报内容</th></tr></thead><tbody>
+<tr><td>项目名称</td><td>共达离线无障碍工具箱</td></tr>
+<tr><td>申报单位与负责人</td><td>待申报人填写并核实</td></tr>
+<tr><td>申报类别与项目编号</td><td>待按正式指南填写</td></tr>
+<tr><td>拟实施周期</td><td>24 周 从立项起计算</td></tr>
+<tr><td>拟预算规模</td><td>120,000 元 仅为建议预算</td></tr>
+<tr><td>申请金额与配套来源</td><td>待按指南及真实资金落实情况填写</td></tr>
+<tr><td>当前阶段</td><td>可运行原型 已有工程测试 尚未开展用户试点</td></tr>
+<tr><td>联系方式与盖章</td><td>待申报人填写</td></tr>
+</tbody></table>
+<p>本文件提供可编辑的技术和实施内容，正式提交前必须补充真实主体信息，并逐项匹配申报通知、资格条件和附件要求。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>1 / 7</span></div></section><section class="sheet" aria-label="第 2 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>一 项目背景与实际问题</h2>
+<p>获得信息和表达意愿是参与学习、工作与社区生活的基础。辅助需求的障碍可能来自输入方式、内容形式、复杂操作、缺少合适设置，以及需要持续联网或重复注册。WHO 将沟通、认知与字幕等数字产品纳入辅助技术范围，同时强调产品之外的服务与获取障碍。<a href="https://www.who.int/news-room/fact-sheets/detail/assistive-technology">S01</a></p>
+<p>国内无障碍环境建设相关法律对字幕、大字和信息交流提供了政策背景。法律支持需求的公共价值，但不自动证明本项目已达到法定标准、具备资助资格或应当被采购。<a href="https://gxca.miit.gov.cn/zwgk/zcwj/flfg/art/2024/art_340a68cb6a8e45ae81c121630dd37346.html">S03</a></p>
+<p>本项目已整理 29 条公开来源，覆盖国际组织、当事人相关机构、技术标准、现有产品与公开使用反馈。具体需求包括沟通板输入方式可选、阅读显示与位置可调、字幕能够被人工复核、任务步骤清楚且可以恢复，以及内容提供者能够识别常见结构问题。公开证据能够说明问题值得验证，但不能代替本项目的用户访谈。</p>
+<h2>二 服务对象与适用边界</h2>
+<p>首轮对象是能表达使用意愿、愿意尝试相应工具的成人，以及经其同意参与设置的协助者。项目不要求提供诊断证明，不把某一残障类别的所有人视作同质用户，也不通过照护者意见替代当事人的选择。</p>
+<p>软件不提供医疗诊断、康复处方、服药建议、眼控识别、自动手语翻译、环境危险报警或路线安全保障。需要专业 AAC 系统、出版物阅读器、专业字幕编辑器及审计服务的场景，应当优先评估成熟产品。</p>
+<h2>三 项目目标</h2>
+<p>在 24 周内完成一轮以当事人参与为核心的验证，形成可复现的测试材料、修复记录及公开版本；建立用户可理解的数据保存、导出与删除流程；明确每个模块的可用场景和不适用场景。项目的成功标准是自主选择与任务可达性改善的证据，而不是简单追求功能数或下载量。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>2 / 7</span></div></section><section class="sheet" aria-label="第 3 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>四 建设内容与已有基础</h2>
+<table><colgroup><col style="width:19%"><col style="width:45%"><col style="width:36%"></colgroup><thead><tr><th scope="col">模块</th><th scope="col">当前可运行能力</th><th scope="col">后续建设重点</th></tr></thead><tbody>
+<tr><td>表达板</td><td>短语 句子组合 本地语音 大字展示 扫描</td><td>外接开关与不同触发方式实测</td></tr>
+<tr><td>轻阅读</td><td>纯文本 逐段显示 偏好调整 本地朗读</td><td>真实阅读任务与辅助技术兼容</td></tr>
+<tr><td>字幕工作台</td><td>时间文字编辑 偏移 检查 导出</td><td>本地媒体同步和听障共同复核</td></tr>
+<tr><td>一步任务卡</td><td>分步 暂停 退回 保存 计时</td><td>用户自选任务的恢复体验</td></tr>
+<tr><td>网页检查台</td><td>静态源码线索 两色对比度 报告</td><td>规则误报边界与人工测试路径</td></tr>
+</tbody></table>
+<p>软件采用原创 HTML、CSS 和 JavaScript，无运行时第三方依赖。通用界面提供键盘导航、可见焦点、大字号、配色选择、明文存储提示及 JSON 备份。核心算法已有 56 项自动断言；初步浏览器检查已覆盖模块的主要数据流程。完整环境和测试边界见随附用户指南及测试记录。</p>
+<p>当前原型和文档是技术基础，不构成已完成的服务试点。没有用户留存、付费、临床结果、合作机构或采购承诺。正式立项后应将这些未知问题纳入阶段目标，而不是填成已实现业绩。</p>
+<h2>五 方案特点与创新边界</h2>
+<p>本项目拟验证的是一条实施路径：用统一的本机处理、清楚的操作和可带走的数据，降低小规模辅助场景的部署与试用成本。五个模块共享控制方式和数据约定，用户可以只选需要的模块。</p>
+<p>这种组合属于工程与服务流程设计，不声称首创 AAC、字幕编辑或无障碍检查。Cboard、AsTeRICS、Thorium、Subtitle Edit 和成熟评估工具都已存在。项目将对照这些方案，必要时选择适配、培训或回馈现有开源项目，而不因已有原型就坚持重复建设。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>3 / 7</span></div></section><section class="sheet" aria-label="第 4 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>六 技术路线与数据治理</h2>
+<p>交互层采用语义化控件和普通页面导航；核心算法独立于界面，处理字幕时间、备份校验、段落拆分和颜色计算。表达板、阅读和任务模块分别管理状态，临时文字默认不落盘。用户主动保存的数据集中为一个带版本号的本机 JSON 结构，导入先验证再确认，避免错误文件部分覆盖。</p>
+<p>语音只选择浏览器标记为本地的声音；没有声音时保留文字及大字路径。网页检查以未挂载模板解析源码，不执行输入脚本，不加载其中资源。字幕与媒体仅由用户在当前设备打开，不接入识别服务，也不上传服务器。</p>
+<table><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th scope="col">风险点</th><th scope="col">设计控制</th><th scope="col">验证方式</th></tr></thead><tbody>
+<tr><td>敏感文字泄露</td><td>默认不保存 无追踪 不自动上传</td><td>网络请求检查 存储行为测试</td></tr>
+<tr><td>已存内容被破坏</td><td>结构验证 异常暂停写入 明确确认</td><td>损坏与冲突备份样本</td></tr>
+<tr><td>键盘陷阱</td><td>正常 Tab 路径 扫描可退出</td><td>键盘及外接开关任务</td></tr>
+<tr><td>自动检查误导</td><td>明确线索范围 人工复核说明</td><td>好坏源码与反例测试</td></tr>
+<tr><td>设备语音差异</td><td>本地语音检测 文字兜底</td><td>多设备与断网检查</td></tr>
+</tbody></table>
+<p>本机存储并不等于加密或身份保护。共用设备上的其他使用者、扩展或同源代码仍可能读取数据。项目不收集用户原文作为遥测，不将健康或身份资料存入公开仓库。研究记录采用最少信息、代号及明确授权；任何后续云同步都应作为新功能单独评估。</p>
+<h2>七 知识产权与开源</h2>
+<p>原创代码拟按 MIT 许可发布。外部指南仅链接和简要改写，归原权利人所有；没有复制成熟项目代码或附带未获授权的符号库。项目没有已申请或已授权专利、软件著作权或第三方认证的事实声明；如未来办理登记，应以真实材料另行申报。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>4 / 7</span></div></section><section class="sheet" aria-label="第 5 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>八 实施计划与阶段交付</h2>
+<table><colgroup><col style="width:21%"><col style="width:13%"><col style="width:36%"><col style="width:30%"></colgroup><thead><tr><th scope="col">阶段</th><th scope="col">周次</th><th scope="col">工作内容</th><th scope="col">阶段成果</th></tr></thead><tbody>
+<tr><td>准备与共同设计</td><td>1至4</td><td>确认主体 招募 访谈 同意与任务选择</td><td>研究协议 任务样本 风险清单</td></tr>
+<tr><td>首轮验证</td><td>5至8</td><td>表达板和任务卡实测 发现阻断</td><td>问题记录 输入适配结论</td></tr>
+<tr><td>修复与兼容</td><td>9至12</td><td>修复高优先问题 多浏览器辅助技术检查</td><td>修复版 自动回归用例</td></tr>
+<tr><td>扩展验证</td><td>13至16</td><td>阅读与字幕内容任务 检查台教学试用</td><td>对比记录 模块去留建议</td></tr>
+<tr><td>场景试点</td><td>17至20</td><td>有意愿机构试用 训练 协助与维护</td><td>试点日志 可用指南</td></tr>
+<tr><td>总结与公开</td><td>21至24</td><td>复核效果 开源版本 文档与持续维护安排</td><td>验收报告 公开版本 维护计划</td></tr>
+</tbody></table>
+<p>拟招募总计 20至24 名参与者，允许个人选择多个模块，不按模块人数简单相加；拟邀请 2至3 个服务点参与试点，目前均待联系及确认。招聘、数据授权、参与形式及补偿应先获得机构和参与者认可，不能将计划人数写成已经参与人数。</p>
+<h2>九 验收指标与评估方法</h2>
+<table><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th scope="col">指标</th><th scope="col">拟定目标</th><th scope="col">计算与证据</th></tr></thead><tbody>
+<tr><td>当事人参与</td><td>20至24 名 自愿可退出</td><td>同意记录及匿名任务记录</td></tr>
+<tr><td>核心路径成功率</td><td>达到 80% 为评审目标</td><td>各模块按约定任务与输入方式分层 不合并掩盖差异</td></tr>
+<tr><td>阻断问题</td><td>已知一级阻断在发布前关闭</td><td>问题编号 复测和相关参与者确认</td></tr>
+<tr><td>数据可带走</td><td>备份恢复成功率目标 100%</td><td>有预期结果的有效与损坏样本</td></tr>
+<tr><td>键盘可达</td><td>五模块主要路径均可退出和完成</td><td>操作脚本 实测环境 失败记录</td></tr>
+<tr><td>公开成果</td><td>一个版本 一套文档 一份边界清单</td><td>版本标识 可复现测试与发布记录</td></tr>
+</tbody></table>
+<p>这些是拟验收目标，不是已取得结果。除任务完成外，还需收集误选与恢复、主观负担、偏好及是否愿意继续使用。不得用少数受试者结果证明普遍有效，更不得推导临床疗效。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>5 / 7</span></div></section><section class="sheet" aria-label="第 6 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>十 建议预算与测算依据</h2>
+<p>下列为 24 周验证和试点的规划预算，合计 120,000 元。单价是待询价的估算，不是已签合同。正式申报时须按财务制度调整科目、税费、补助方式及可列支范围，不能把估算当作已落实资金。</p>
+<table><colgroup><col style="width:27%"><col style="width:53%"><col style="width:20%"></colgroup><thead><tr><th scope="col">科目</th><th scope="col">测算条件</th><th scope="col">金额 元</th></tr></thead><tbody>
+<tr><td>开发与修复</td><td>40 人日 每人日 1,000 元</td><td style="text-align:right">40,000</td></tr>
+<tr><td>当事人参与补偿</td><td>20 人 每人预算 300 元</td><td style="text-align:right">6,000</td></tr>
+<tr><td>参与支持与招募</td><td>交通 无障碍沟通与组织费用 待核价</td><td style="text-align:right">8,000</td></tr>
+<tr><td>独立无障碍测试</td><td>15 人日 每人日 1,200 元</td><td style="text-align:right">18,000</td></tr>
+<tr><td>设备与适配</td><td>测试开关 支架与兼容设备 待核价</td><td style="text-align:right">8,000</td></tr>
+<tr><td>试点支持</td><td>现场或远程部署 维护与反馈</td><td style="text-align:right">12,000</td></tr>
+<tr><td>隐私与研究材料审查</td><td>流程及授权文案复核</td><td style="text-align:right">8,000</td></tr>
+<tr><td>培训与文档</td><td>使用培训 可访问材料与维护交接</td><td style="text-align:right">10,000</td></tr>
+<tr><td>预备费用</td><td>在允许科目内使用并说明用途</td><td style="text-align:right">10,000</td></tr>
+<tr><td>合计</td><td>建议预算 尚未落实</td><td style="text-align:right">120,000</td></tr>
+</tbody></table>
+<p>人员补偿应覆盖其参与成本，不以给出正面评价作为条件。设备是否购买或借用应优先考虑参与者已有习惯，避免为了测试而迫使其更换辅助方式。预算不得用于未经批准收集敏感数据，亦不应以广告曝光替代可用性验证。</p>
+<h2>十一 组织与职责</h2>
+<table><colgroup><col style="width:19%"><col style="width:49%"><col style="width:32%"></colgroup><thead><tr><th scope="col">角色</th><th scope="col">工作职责</th><th scope="col">当前落实状态</th></tr></thead><tbody>
+<tr><td>项目负责人</td><td>真实主体 财务 进度与风险</td><td>待填真实人选</td></tr>
+<tr><td>开发维护</td><td>软件修复 版本 测试与文档</td><td>原型可提供 正式人选待落实</td></tr>
+<tr><td>当事人顾问</td><td>任务选择 界面评价 复核</td><td>尚未招募</td></tr>
+<tr><td>辅助技术测试</td><td>设备与屏幕阅读器验证</td><td>待落实</td></tr>
+<tr><td>试点联络</td><td>同意 招募 支持与退出</td><td>待落实</td></tr>
+</tbody></table></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>6 / 7</span></div></section><section class="sheet" aria-label="第 7 页"><div class="running">共达 Common Access　/　共达离线无障碍工具箱项目申报书</div><div class="content"><h2>十二 风险应对与退出条件</h2>
+<table><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th scope="col">风险</th><th scope="col">可能影响</th><th scope="col">应对与暂停条件</th></tr></thead><tbody>
+<tr><td>原型与真实需求不匹配</td><td>维护无用功能</td><td>反复不适用或成熟工具明显更合适时停止扩展</td></tr>
+<tr><td>参与者被动同意</td><td>研究结果失真及伤害自主性</td><td>提供独立表达与退出渠道 不以协助者同意代替</td></tr>
+<tr><td>兼容问题</td><td>无法使用或误触发</td><td>分层公布支持范围 阻断未修复不扩大试点</td></tr>
+<tr><td>数据泄露或丢失</td><td>敏感文字暴露</td><td>最少保存 备份 授权 事故暂停与告知流程</td></tr>
+<tr><td>资金和人员未落实</td><td>进度失控</td><td>不承诺未签资源 缩小到最有证据的模块</td></tr>
+<tr><td>误导性传播</td><td>被当成医疗或合规保障</td><td>发布前审查能力描述 禁用无法证明的表述</td></tr>
+</tbody></table>
+<p>第一轮若大多数参与者认为原有工具更易用，应调整方向或贡献现有项目，不能仅因已投入开发就继续扩张。项目不设置必须完成的身体或医疗任务，不将任务卡当作服药、安全操作或紧急报警系统。</p>
+<h2>十三 预期社会价值与持续维护</h2>
+<p>预期价值是让部分使用者多一种自主完成沟通、阅读或低风险任务的方式，并让服务点理解自己的内容障碍。是否实现，要由实际任务与当事人反馈证明。项目不承诺减少疾病、康复改善或替代人员服务。</p>
+<p>计划保持基础工具免费开放，通过机构适配、培训、维护或公益支持承担持续成本。任何机构服务与研究数据应分开，不以个人数据交易为收入来源。结束资助前应确定维护负责人、问题处理入口和停止服务时的数据导出方式。</p>
+<h2>十四 正式提交前核对</h2>
+<p>填写真实单位、负责人、预算申请额与配套来源；取得参与单位书面确认；核对资助指南、日期和财务规则；补充真实签名、盖章、主体及人员资格；根据实际审核要求附上软件说明、研究方案、伦理或数据授权材料。未完成这些事项前，不宜把本文件作为已经符合特定项目要求的正式申报件。</p></div><div class="page-footer"><span>2026年11月　共达项目资料</span><span>7 / 7</span></div></section></main></body></html>
