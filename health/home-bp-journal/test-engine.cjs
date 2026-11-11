@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict');
+const BP=require('./engine.js');
+const row=(x={})=>({id:'a',date:'2026-11-01',time:'07:30',period:'morning',sys:128,dia:78,pulse:null,note:'',...x});
+assert.equal(BP.validDate('2026-02-29'),false);assert.equal(BP.validDate('2024-02-29'),true);
+for(const x of [{date:'2026-02-30'},{time:'24:00'},{sys:80,dia:90},{sys:120.5},{pulse:0},{note:'a'.repeat(301)}])assert.throws(()=>BP.validate(row(x)));
+assert.equal(BP.urgent(179,119,false).level,'neutral');
+for(const [s,d] of [[180,70],[130,120],[181,121]])assert.equal(BP.urgent(s,d,false).level,'urgent');
+assert.equal(BP.urgent(110,70,true).level,'emergency');
+assert.equal(BP.urgent('', '',true).level,'emergency');
+const rows=[row(),row({id:'b',date:'2026-11-02',sys:132,dia:82}),row({id:'c',date:'2026-11-07'}),row({id:'d',date:'2026-11-08'})];
+assert.equal(BP.windowRows(rows,'2026-11-01',false).length,3);
+assert.equal(BP.windowRows(rows,'2026-11-01',true).length,2);
+assert.equal(BP.summary([]).sys,null);assert.equal(BP.summary(rows.slice(0,2)).sys,130);
+assert.equal(BP.summary(rows.slice(0,2)).dia,80);assert.equal(BP.summary(rows.slice(0,2)).days,2);
+assert.deepEqual(BP.importData(JSON.stringify({format:'home-bp-journal',version:1,records:[row()]})),[row()]);
+for(const x of ['{}','bad',JSON.stringify({format:'home-bp-journal',version:1,records:[row(),row()]})])assert.throws(()=>BP.importData(x));
+assert.equal(BP.validate(row({note:'<img src=x onerror=alert(1)>'})).note,'<img src=x onerror=alert(1)>');
+console.log('PASS: date validation, input ranges, independent urgent thresholds, symptom priority, 7-day boundaries, first-day exclusion, arithmetic and backup validation.');

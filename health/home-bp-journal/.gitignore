@@ -1,0 +1,3 @@
+*-backup-*.json
+*.log
+node_modules/
